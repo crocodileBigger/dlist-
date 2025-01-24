@@ -1,8 +1,13 @@
 package com.devsuperior.dlist.entidades;
 
 import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
 import java.util.Objects;
 
+@Entity
+@Table(name = "tb_belonging")
 public class Belonging {
 
   @EmbeddedId
