@@ -1,53 +1,28 @@
-package com.devsuperior.dlist.entidades;
+package com.devsuperior.dlist.dto;
 
-import java.util.Objects;
-import jakarta.persistence.Column;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import com.devsuperior.dlist.entidades.Game;
+import org.springframework.beans.BeanUtils;
 
-@Entity
-@Table(name = "tb_game")
-public class Game {
+public class GameDTO {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   private String title;
-
-  @Column(name = "game_year")
   private Integer year;
   private String genre;
   private String platforms;
   private Double score;
   private String imgUrl;
-
-  @Column(columnDefinition = "TEXT")
   private String shortDescription;
-
-  @Column(columnDefinition = "TEXT")
   private String longDescription;
 
-  public Game() {
+  public GameDTO() {
   }
 
-  public Game(Long id, String title, Integer year, String genre, String platforms, Double score, String imgUrl,
-      String shortDescription, String longDescription) {
-    this.id = id;
-    this.title = title;
-    this.year = year;
-    this.genre = genre;
-    this.platforms = platforms;
-    this.score = score;
-    this.imgUrl = imgUrl;
-    this.shortDescription = shortDescription;
-    this.longDescription = longDescription;
+  public GameDTO(Game entity) {
+    BeanUtils.copyProperties(entity, this);
   }
 
-  // metodo set
-
+  // Métodos set
   public void setId(Long id) {
     this.id = id;
   }
@@ -84,8 +59,7 @@ public class Game {
     this.longDescription = longDescription;
   }
 
-  // metodo get
-
+  // Métodos get
   public Long getId() {
     return id;
   }
@@ -118,24 +92,7 @@ public class Game {
     return shortDescription;
   }
 
-  public String longDescription() {
+  public String getLongDescription() {
     return longDescription;
-  }
-
-  // hash code
-  public int hashCode() {
-    return Objects.hash(id);
-  }
-
-  // equals
-  public boolean equals(Object obj) {
-    if (this == obj)
-      return true;
-    if (obj == null)
-      return false;
-    if (getClass() != obj.getClass())
-      return false;
-    Game other = (Game) obj;
-    return Objects.equals(id, other.id);
   }
 }
