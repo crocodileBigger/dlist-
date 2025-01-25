@@ -11,7 +11,7 @@ import java.util.Objects;
 public class Belonging {
 
   @EmbeddedId
-  private BelongingPK id;
+  private BelongingPK id = new BelongingPK();
 
   private Integer position;
 
